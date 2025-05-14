@@ -1,7 +1,10 @@
 #gemini
 from flask import Flask,request,render_template
 import google.generativeai as genai
-genai.configure(api_key="AIzaSyBRGx27_7YzosWJloObAdCB7PeX4yKrjmw")
+import os
+gemini_api_key = os.getenv("gemini_api_key")
+genai.configure(api_key=gemini_api_key)
+#genai.configure(api_key="AIzaSyBRGx27_7YzosWJloObAdCB7PeX4yKrjmw")
 model = genai.GenerativeModel("gemini-1.5-flash")
 app = Flask(__name__)
 @app.route("/",methods=["GET","POST"])
