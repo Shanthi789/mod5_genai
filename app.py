@@ -10,6 +10,8 @@ genai.configure(api_key="AIzaSyBRGx27_7YzosWJloObAdCB7PeX4yKrjmw")
 model = genai.GenerativeModel("gemini-1.5-flash")
 app = Flask(__name__)
 
+first_time=0
+
 @app.route("/",methods=["GET","POST"])
 def index():
     return(render_template("index.html"))
@@ -55,6 +57,11 @@ def delete_log():
 @app.route("/gemini",methods=["GET","POST"])
 def gemini():
     return(render_template("gemini.html"))
+
+@app.route("/paynow",methods=["GET","POST"])
+def paynow():
+    return(render_template("paynow.html"))
+
 @app.route("/gemini_reply",methods=["GET","POST"])
 def gemini_reply():
     q = request.form.get("q")
@@ -62,6 +69,14 @@ def gemini_reply():
     r = model.generate_content(q)
     r = r.text
     return(render_template("gemini_reply.html",r=r))
+
+@app.route("/logout",methods=["GET","POST"])
+def logout():
+    global first_time
+    first_time = 1
+    return(render_template("index.html"))
+    
+
 if __name__ == "__main__":
     app.run()
 
