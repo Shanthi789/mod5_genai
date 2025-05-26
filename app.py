@@ -75,7 +75,16 @@ def logout():
     global first_time
     first_time = 1
     return(render_template("index.html"))
-    
+
+@app.route("/prediction",methods=["GET","POST"])
+def prediction():
+    return(render_template("prediction.html"))   
+
+@app.route("/prediction_reply",methods=["GET","POST"])
+def prediction_reply():
+    q = float(request.form.get("q"))
+    print("the value is :", q)
+    return(render_template("prediction_reply.html",r=90.2 +(-50.6*q)))
 
 if __name__ == "__main__":
     app.run()
