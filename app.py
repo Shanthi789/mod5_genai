@@ -106,6 +106,7 @@ def start_telegram():
     
     # Set the webhook URL for the Telegram bot
     set_webhook_url = f"https://api.telegram.org/bot{gemini_telegram_token}/setWebhook?url={domain_url}/telegram"
+    print("123", gemini_telegram_token,domain_url)
     webhook_response = requests.post(set_webhook_url, json={"url": domain_url, "drop_pending_updates": True})
     print('webhook:', webhook_response)
     if webhook_response.status_code == 200:
