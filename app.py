@@ -8,7 +8,7 @@ import datetime
 #genai.configure(api_key=gemini_api_key)
 genai.configure(api_key="AIzaSyBRGx27_7YzosWJloObAdCB7PeX4yKrjmw")
 model = genai.GenerativeModel("gemini-1.5-flash")
-gemini_telegram_token = os.getenv('GEMINI_TELEGRAM_TOKEN')
+gemini_telegram_token=os.getenv("gemini_telegram_token")
 app = Flask(__name__)
 
 first_time=0
