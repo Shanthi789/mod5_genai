@@ -1,14 +1,21 @@
-#gemini
 from flask import Flask,request,render_template
-import google.generativeai as genai
+import google.generativeai as genai1
+from google import genai
 import os
 import sqlite3
 import datetime
-#gemini_api_key = os.getenv["gemini_api_key_1"]
-#genai.configure(api_key=gemini_api_key)
-genai.configure(api_key="AIzaSyBRGx27_7YzosWJloObAdCB7PeX4yKrjmw")
-model = genai.GenerativeModel("gemini-1.5-flash")
-gemini_telegram_token=os.getenv("gemini_telegram_token")
+import requests
+
+gemini_api_key = os.getenv("gemini_api_key")
+
+genmini_client = genai.Client(api_key=gemini_api_key)
+genmini_model = "gemini-2.0-flash"
+
+genai1.configure(api_key=gemini_api_key)
+model = genai1.GenerativeModel("gemini-2.0-flash")
+
+gemini_telegram_token = os.getenv('GEMINI_TELEGRAM_TOKEN')
+
 app = Flask(__name__)
 
 first_time=0
